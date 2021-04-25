@@ -90,7 +90,10 @@ async def on_message(message):
 
         # responds with encouragement if any sad word is detected
     if any(word in msg for word in sad_words):
-        await message.channel.send(random.choice(starter_encouragements))
+        if(len(messages) != 0):
+            await message.channel.send(random.choice(messages))
+        if(len(messages) == 0):
+            await message.channel.send(random.choice(starter_encouragements))
 
     # add encouraging message to db
     if msg.startswith("$new"):
@@ -105,7 +108,7 @@ async def on_message(message):
         encouragements = []  # returns empty list if encour. not in db
         try:
             # space is optional because we are converting to int
-            index = int(msg.split("$del", 1)[1])
+            index = (msg.split("$del", 1)[1])
             delete_encouragements(index)
             await message.channel.send("deleted encourage message!!")
             #encouragements = db["encouragements"]
