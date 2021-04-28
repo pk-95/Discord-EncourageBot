@@ -101,7 +101,7 @@ async def on_message(message):
         # extracts required encour.
         encouraging_message = msg.split("$new ", 1)[1]
         update_encouragements(encouraging_message)
-        await message.channel.send("New encouraging message added")
+        await message.reply("New encouraging message added")
 
     # Delete encouraging message from db
     if msg.startswith("$del"):
